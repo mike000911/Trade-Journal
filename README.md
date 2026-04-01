@@ -6,12 +6,12 @@ Premium dark-mode trade journal for Nasdaq traders using manual entries only.
 
 - Next.js (App Router) + TypeScript
 - Tailwind CSS + shadcn/ui-style components
-- Prisma + Postgres (Supabase)
-- Supabase Auth
+- Prisma + Postgres
+- Cookie-based email/password auth
 
 ## Getting Started
 
-1. Copy `.env.example` to `.env` and add your keys.
+1. Copy `.env.example` to `.env` and add your database connection.
 2. Install dependencies:
    ```bash
    npm install
@@ -25,8 +25,14 @@ Premium dark-mode trade journal for Nasdaq traders using manual entries only.
    npm run dev
    ```
 
+5. Create or apply your Prisma migration for the updated schema before using the app with a real database:
+   ```bash
+   npm run prisma:migrate
+   ```
+
 ## Current scaffold
 
 - Premium landing page (`/`)
-- Dashboard shell (`/dashboard`) with metrics cards + equity curve
-- Initial Prisma schema for users, manual trades, screenshots, and weekly AI reviews
+- Database-backed account creation and sign-in (`/login`)
+- Dashboard (`/dashboard`) with user metrics, equity curve, and clickable calendar
+- Calendar journal (`/calendar`) for daily plans, emotions, and manual trade logging

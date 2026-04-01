@@ -12,6 +12,11 @@ const highlights = [
     title: "Manual-first journaling",
     description: "Capture intentional entries and context-rich lessons without noisy broker imports.",
     icon: ShieldCheck
+  },
+  {
+    title: "Multi-user access",
+    description: "Create database-backed accounts so every trader keeps a private calendar, plan, and review history.",
+    icon: ArrowRight
   }
 ];
 
@@ -33,13 +38,13 @@ export default function LandingPage() {
           <span className="block text-muted-foreground">Compound execution quality.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          A premium trade journal for manual entries, post-trade storytelling, and weekly AI coaching.
+          A premium trade journal for multi-user access, manual entries, clickable day planning, and post-trade storytelling.
           Built for NASDAQ-focused routines.
         </p>
         <div className="mt-12 flex flex-wrap gap-4">
           <Button size="lg" asChild>
-            <Link href="/dashboard">
-              Enter Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+            <Link href="/login">
+              Sign In or Create Account <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
@@ -48,7 +53,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="features" className="container relative z-10 grid gap-4 pb-20 md:grid-cols-2">
+      <section id="features" className="container relative z-10 grid gap-4 pb-20 md:grid-cols-3">
         {highlights.map((item, index) => (
           <article
             key={item.title}

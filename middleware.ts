@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const hasSession = request.cookies.has("sb-access-token");
+  const hasSession = request.cookies.has("journal-session");
 
-  if (!hasSession && request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (!hasSession) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"]
+  matcher: ["/dashboard/:path*", "/calendar/:path*", "/trades/:path*", "/weekly-review/:path*"]
 };

@@ -6,3 +6,5 @@ coverage
 pnpm-lock.yaml
 yarn.lock
 package-lock.json
+.codex-dev*
+landing-*.png
