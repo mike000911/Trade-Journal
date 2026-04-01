@@ -1,7 +1,7 @@
 import type { User } from "@prisma/client";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { logDatabaseError, prisma } from "@/lib/prisma";
 
 const SESSION_COOKIE = "journal-session";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
@@ -26,29 +26,39 @@ export function normalizeEmail(email: string) {
 
 export async function createSessionForUser(userId: string) {
   const expiresAt = getExpiryDate();
-  const session = await prisma.authSession.create({
-    data: {
-      userId,
-      expiresAt
-    }
-  });
 
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE, session.id, getCookieOptions(expiresAt));
+  try {
+    const session = await prisma.authSession.create({
+      data: {
+        userId,
+        expiresAt
+      }
+    });
 
-  return session;
+    const cookieStore = await cookies();
+    cookieStore.set(SESSION_COOKIE, session.id, getCookieOptions(expiresAt));
+
+    return session;
+  } catch (error) {
+    logDatabaseError("createSessionForUser", error);
+    throw error;
+  }
 }
 
 export async function destroyCurrentSession() {
   const cookieStore = await cookies();
   const sessionId = cookieStore.get(SESSION_COOKIE)?.value;
 
-  if (sessionId) {
-    await prisma.authSession.deleteMany({
-      where: {
-        id: sessionId
-      }
-    });
+  try {
+    if (sessionId) {
+      await prisma.authSession.deleteMany({
+        where: {
+          id: sessionId
+        }
+      });
+    }
+  } catch (error) {
+    logDatabaseError("destroyCurrentSession", error);
   }
 
   cookieStore.set(SESSION_COOKIE, "", {
@@ -68,19 +78,24 @@ export async function getCurrentUser(): Promise<User | null> {
     return null;
   }
 
-  const session = await prisma.authSession.findFirst({
-    where: {
-      id: sessionId,
-      expiresAt: {
-        gt: new Date()
+  try {
+    const session = await prisma.authSession.findFirst({
+      where: {
+        id: sessionId,
+        expiresAt: {
+          gt: new Date()
+        }
+      },
+      include: {
+        user: true
       }
-    },
-    include: {
-      user: true
-    }
-  });
+    });
 
-  return session?.user ?? null;
+    return session?.user ?? null;
+  } catch (error) {
+    logDatabaseError("getCurrentUser", error);
+    return null;
+  }
 }
 
 export async function requireUser() {
