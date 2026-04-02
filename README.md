@@ -30,6 +30,11 @@ Premium dark-mode trade journal for Nasdaq traders using manual entries only.
    npm run prisma:migrate
    ```
 
+## Deployment Notes
+
+- Vercel must have both `DATABASE_URL` and `DIRECT_URL` configured before install/build so Prisma can generate the client and connect correctly.
+- Prisma Client is generated automatically during `npm install` and again before `npm run build`.
+
 ## Current scaffold
 
 - Premium landing page (`/`)
