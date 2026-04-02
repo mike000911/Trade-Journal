@@ -35,13 +35,22 @@ function normalizeDatabaseUrl(url: string) {
     return "";
   }
 
-  const authMatch = trimmedUrl.match(/^(postgres(?:ql)?):\/\/([^@/]+)@(.+)$/i);
+  const schemeMatch = trimmedUrl.match(/^(postgres(?:ql)?):\/\//i);
 
-  if (!authMatch) {
+  if (!schemeMatch) {
     return trimmedUrl;
   }
 
-  const [, scheme, userInfo, rest] = authMatch;
+  const scheme = schemeMatch[1];
+  const remainder = trimmedUrl.slice(schemeMatch[0].length);
+  const atIndex = remainder.lastIndexOf("@");
+
+  if (atIndex < 0) {
+    return trimmedUrl;
+  }
+
+  const userInfo = remainder.slice(0, atIndex);
+  const rest = remainder.slice(atIndex + 1);
   const separatorIndex = userInfo.indexOf(":");
 
   if (separatorIndex < 0) {
