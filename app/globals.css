@@ -22,3 +22,32 @@ body {
 .glass {
   @apply border border-border/70 bg-card/60 backdrop-blur-xl;
 }
+
+.analytics-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(52, 211, 153, 0.08), transparent 38%),
+    linear-gradient(180deg, rgba(13, 18, 33, 0.96), rgba(7, 10, 22, 0.97));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.4);
+}
+
+.analytics-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 28%);
+}
+
+.analytics-backdrop {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-position: center;
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+}

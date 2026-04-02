@@ -70,6 +70,7 @@ model JournalDay {
   keyLevels     String?
   dailyEmotion  Emotion?
   notes         String?
+  analysis      Json?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   trades        Trade[]

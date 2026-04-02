@@ -1,14 +1,8 @@
 import Link from "next/link";
 import { signOutAction } from "@/app/actions/auth";
+import { AppNavLinks } from "@/components/layout/app-nav-links";
 import { Button } from "@/components/ui/button";
 import { requireUser } from "@/lib/auth";
-
-const nav = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/calendar", label: "Calendar" },
-  { href: "/trades/new", label: "New Trade" },
-  { href: "/weekly-review", label: "Weekly Review" }
-];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
@@ -28,13 +22,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           </div>
 
           <div className="flex flex-col gap-3 md:flex-row md:items-center">
-            <nav className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              {nav.map((item) => (
-                <Link key={item.href} href={item.href} className="transition hover:text-foreground">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <AppNavLinks />
 
             <form action={signOutAction}>
               <Button variant="outline" className="w-full md:w-auto">

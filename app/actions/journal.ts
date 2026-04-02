@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { ensureDateKey, ensureMonthKey, parseDateKey } from "@/lib/date";
+import { buildLegacyJournalFields, normalizeMarketAnalysis } from "@/lib/market-analysis";
 import { prisma } from "@/lib/prisma";
 
 function getValue(formData: FormData, key: string) {
@@ -121,6 +122,16 @@ export async function saveJournalDayAction(formData: FormData) {
     redirect(buildCalendarUrl(dateKey, monthKey, { error: "Pick a valid calendar date." }));
   }
 
+  let structuredAnalysis;
+
+  try {
+    structuredAnalysis = normalizeMarketAnalysis(JSON.parse(getValue(formData, "analysis") || "{}"));
+  } catch {
+    redirect(buildCalendarUrl(dateKey, monthKey, { error: "Could not save the market analysis form. Please try again." }));
+  }
+
+  const legacyFields = buildLegacyJournalFields(structuredAnalysis);
+
   await prisma.journalDay.upsert({
     where: {
       userId_date: {
@@ -129,17 +140,19 @@ export async function saveJournalDayAction(formData: FormData) {
       }
     },
     update: {
+      analysis: structuredAnalysis,
       dailyEmotion: parseEmotion(getValue(formData, "dailyEmotion")),
-      keyLevels: toNullable(getValue(formData, "keyLevels")),
-      notes: toNullable(getValue(formData, "notes")),
-      preGamePlan: toNullable(getValue(formData, "preGamePlan"))
+      keyLevels: legacyFields.keyLevels,
+      notes: legacyFields.notes,
+      preGamePlan: legacyFields.preGamePlan
     },
     create: {
+      analysis: structuredAnalysis,
       dailyEmotion: parseEmotion(getValue(formData, "dailyEmotion")),
       date,
-      keyLevels: toNullable(getValue(formData, "keyLevels")),
-      notes: toNullable(getValue(formData, "notes")),
-      preGamePlan: toNullable(getValue(formData, "preGamePlan")),
+      keyLevels: legacyFields.keyLevels,
+      notes: legacyFields.notes,
+      preGamePlan: legacyFields.preGamePlan,
       userId: user.id
     }
   });

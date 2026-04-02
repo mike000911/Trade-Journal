@@ -158,31 +158,31 @@ export default async function CalendarPage({ searchParams }: CalendarPageProps) 
           </div>
         </section>
 
-        <section className="mt-6 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-          <div className="space-y-6">
-            <section className="glass rounded-2xl p-6">
-              <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Selected day</p>
-              <h2 className="mt-3 text-2xl font-semibold">{formatDisplayDate(dateKey)}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Use this page like a trading desk notebook: write the plan first, then save each executed trade below it.
-              </p>
-            </section>
+        <section className="mt-6 space-y-6">
+          <section className="glass rounded-2xl p-6">
+            <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Selected day</p>
+            <h2 className="mt-3 text-2xl font-semibold">{formatDisplayDate(dateKey)}</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              Use this page like a trading desk notebook: build the session plan first, then log each executed trade below it.
+            </p>
+          </section>
 
-            <JournalDayForm
-              dateKey={dateKey}
-              monthKey={monthKey}
-              values={
-                selectedJournalDay
-                  ? {
-                      dailyEmotion: selectedJournalDay.dailyEmotion,
-                      keyLevels: selectedJournalDay.keyLevels,
-                      notes: selectedJournalDay.notes,
-                      preGamePlan: selectedJournalDay.preGamePlan
-                    }
-                  : null
-              }
-            />
-          </div>
+          <JournalDayForm
+            dateKey={dateKey}
+            dateLabel={formatDisplayDate(dateKey)}
+            monthKey={monthKey}
+            values={
+              selectedJournalDay
+                ? {
+                    analysis: selectedJournalDay.analysis,
+                    dailyEmotion: selectedJournalDay.dailyEmotion,
+                    keyLevels: selectedJournalDay.keyLevels,
+                    notes: selectedJournalDay.notes,
+                    preGamePlan: selectedJournalDay.preGamePlan
+                  }
+                : null
+            }
+          />
 
           <TradeEntryForm dateKey={dateKey} monthKey={monthKey} />
         </section>
