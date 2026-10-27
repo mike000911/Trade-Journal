@@ -1,0 +1,26 @@
+/* Deliberate movement: quick feedback, soft landings, quiet resting states. */
+:root{--ease-settle:cubic-bezier(.16,1,.3,1);--ease-spring:cubic-bezier(.22,1.35,.4,1);--ease-flow:cubic-bezier(.4,0,.2,1)}
+.app-view{animation:none}
+button,.nav,.text-link,.entry-steps button{transition:transform 360ms var(--ease-spring),background-color 220ms var(--ease-flow),border-color 220ms var(--ease-flow),box-shadow 360ms var(--ease-settle),color 180ms ease}
+.nav .icon,.text-link .icon,button .icon{transition:transform 360ms var(--ease-spring),opacity 220ms ease}
+.primary-stats article,.secondary-metrics article,.day-trade{transition:transform 420ms var(--ease-settle),box-shadow 420ms var(--ease-settle),border-color 260ms ease}
+.calendar-day{transition:transform 440ms var(--ease-spring),box-shadow 380ms var(--ease-settle),border-color 220ms ease,background-color 220ms ease}
+input,select,textarea{transition:border-color 200ms ease,box-shadow 280ms var(--ease-settle),background-color 200ms ease}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px #6a5aa514}
+.duration-win i b{transition:width 650ms var(--ease-settle)}
+button:disabled{transform:none!important}
+@media(hover:hover) and (pointer:fine){
+ button:not(.calendar-day):not(:disabled):hover{transform:translateY(-2px)}
+ button:not(.calendar-day):not(:disabled):hover .icon{transform:translateY(-1px)}
+ .nav:hover .icon{transform:translateX(2px)}
+ .text-link:hover .icon{transform:translateX(4px)}
+ .primary-stats article:hover{transform:translateY(-4px);transition:transform 420ms var(--ease-settle),box-shadow 420ms var(--ease-settle);box-shadow:0 14px 30px #42386616}
+ .secondary-metrics article:hover{transform:translateY(-3px)}
+ .calendar-day:hover{transform:scale(1.15)}
+}
+button:not(.calendar-day):not(:disabled):active,.nav:active{transform:translateY(0) scale(.97);transition-duration:100ms}
+.calendar-day:active{transform:scale(1.03);transition-duration:100ms}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ button,button:hover,button:active,.nav:active,.primary-stats article:hover,.secondary-metrics article:hover,.calendar-day:hover,.calendar-day:active,.icon{transform:none!important}
+}

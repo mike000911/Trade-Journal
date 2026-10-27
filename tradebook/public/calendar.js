@@ -58,7 +58,7 @@ $('previousMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMont
 $('nextMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);renderCalendar()};
 $('calendarToday').onclick=()=>{selectedDay=today();month=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderCalendar()};
 $('calendarJump').onchange=e=>{if(/^\d{4}-\d{2}$/.test(e.target.value)){const [y,m]=e.target.value.split('-').map(Number);month=new Date(y,m-1,1);renderCalendar()}};
-$('addCalendarTrade').onclick=async()=>{if(!ready){toast('Your journal is still loading. Please try again.');return}await $('newTrade').onclick();$('tradeDate').value=selectedDay;$('entryClock').value='';$('exitClock').value='';$('exitDay').value='same';$('exitDate').value=selectedDay;composeTradeTimes();scheduleDraft();$('reason').focus({preventScroll:true});$('tradeDate').scrollIntoView({behavior:'smooth',block:'center'})};
+$('addCalendarTrade').onclick=async()=>{if(!ready){toast('Your journal is still loading. Please try again.');return}await $('newTrade').onclick();$('tradeDate').value=selectedDay;$('entryClock').value='';$('exitClock').value='';$('exitDay').value='same';$('exitDate').value=selectedDay;composeTradeTimes();scheduleDraft();$('reason').focus({preventScroll:true});$('tradeDate').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'})};
 $('dayTrades').onclick=e=>{const button=e.target.closest('[data-calendar-edit]');if(button)editTrade(button.dataset.calendarEdit)};
 syncTimeControls();renderCalendar();const {list,cutoff}=filtered();renderDuration(list,TradeMath.summary(list,settings.balance));
 })();
