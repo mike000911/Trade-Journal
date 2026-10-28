@@ -1,1 +1,19 @@
-{"name":"mnq-tradebook-independent","version":"1.0.0","private":true,"type":"module","engines":{"node":"22.x"},"scripts":{"test":"node tests/analytics.cjs && node --test tests/server.mjs"},"dependencies":{"@supabase/supabase-js":"2.118.0"}}
+{
+  "name": "mnq-tradebook-independent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "test": "node tests/analytics.cjs && node --test tests/server.mjs && node tests/workflow.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "6.0.0",
+    "jsdom": "26.1.0"
+  }
+}

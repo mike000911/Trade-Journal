@@ -32,8 +32,8 @@ calendar.after(durations);
 function recordDay(t){const date=new Date(t.entryISO||t.entryTime||(t.tradeDate?t.tradeDate+'T12:00':''));return Number.isFinite(+date)?localDay(date):''}
 window.renderCalendar=()=>{
  const year=month.getFullYear(),mon=month.getMonth(),prefix=localDay(month).slice(0,7),byDay=new Map();
- for(const t of trades){const day=recordDay(t);if(day){if(!byDay.has(day))byDay.set(day,[]);byDay.get(day).push(t)}}
- const monthly=trades.filter(t=>recordDay(t).startsWith(prefix)),m=TradeMath.summary(monthly);
+ for(const t of trades.filter(t=>matchesInstrument(t,'dashboardInstrument'))){const day=recordDay(t);if(day){if(!byDay.has(day))byDay.set(day,[]);byDay.get(day).push(t)}}
+ const monthly=trades.filter(t=>matchesInstrument(t,'dashboardInstrument')&&recordDay(t).startsWith(prefix)),m=TradeMath.summary(monthly);
  $('calendarMonth').textContent=month.toLocaleDateString(undefined,{month:'long',year:'numeric'});$('calendarJump').value=prefix;
  $('monthSummary').textContent=`${m.executed} trades · ${m.closed} closed · ${money(m.net)} net`;
  const first=(new Date(year,mon,1).getDay()+6)%7,count=new Date(year,mon+1,0).getDate(),cells=[];
@@ -46,7 +46,7 @@ window.renderCalendar=()=>{
  $('calendarDays').innerHTML=cells.join('');
  const dayTrades=(byDay.get(selectedDay)||[]).sort((a,b)=>TradeMath.when(a)-TradeMath.when(b)),stats=TradeMath.summary(dayTrades);
  $('selectedDateTitle').textContent=dateTitle(selectedDay);$('selectedDaySummary').innerHTML=`<span class="day-total"><small>TRADES TAKEN</small><b>${stats.executed}</b></span><span class="day-total"><small>DAILY NET P&L</small><b class="${stats.net>0?'positive':stats.net<0?'negative':''}">${money(stats.net)}</b></span><span class="day-detail">${stats.closed} closed · ${stats.open} open · ${dayTrades.length-stats.executed} drafts · ${pct(stats.winRate)} win rate</span>`;
- $('dayTrades').innerHTML=dayTrades.length?dayTrades.map(t=>{const r=result(t),time=new Date(t.entryISO||t.entryTime||'');return `<button class="day-trade" data-calendar-edit="${esc(t.id)}"><span><b>${esc(t.setup||'MNQ trade')}</b><small>${Number.isFinite(+time)?time.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}):'Time not set'} · ${esc(r.outcome)} · ${durationLabel(r.durationMinutes)}</small></span><strong class="${r.net===null?'':r.net>=0?'positive':'negative'}">${r.net===null?'Review ↗':money(r.net)}</strong></button>`}).join(''):'<div class="calendar-empty"><span aria-hidden="true">＋</span><h4>No entries for this day</h4><p>Add your thesis and trade details. The date is already taken care of.</p></div>';
+ $('dayTrades').innerHTML=dayTrades.length?dayTrades.map(t=>{const r=result(t),time=new Date(t.entryISO||t.entryTime||'');return `<button class="day-trade" data-calendar-edit="${esc(t.id)}"><span><b>${esc(TradeMath.symbol(t)+' · '+(t.setup||'Trade'))}</b><small>${Number.isFinite(+time)?time.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}):'Time not set'} · ${esc(r.outcome)} · ${durationLabel(r.durationMinutes)}</small></span><strong class="${r.net===null?'':r.net>=0?'positive':'negative'}">${r.net===null?'Review ↗':money(r.net)}</strong></button>`}).join(''):'<div class="calendar-empty"><span aria-hidden="true">＋</span><h4>No entries for this day</h4><p>Add your thesis and trade details. The date is already taken care of.</p></div>';
 };
 window.renderDuration=(list,m)=>{
  $('averageDuration').textContent=durationLabel(m.avgDuration);$('winDuration').textContent=durationLabel(m.avgWinDuration);$('lossDuration').textContent=durationLabel(m.avgLossDuration);$('durationSample').textContent=`${m.timedCount} measured / ${m.closed} closed trades`;
@@ -58,7 +58,7 @@ $('previousMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMont
 $('nextMonth').onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);renderCalendar()};
 $('calendarToday').onclick=()=>{selectedDay=today();month=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderCalendar()};
 $('calendarJump').onchange=e=>{if(/^\d{4}-\d{2}$/.test(e.target.value)){const [y,m]=e.target.value.split('-').map(Number);month=new Date(y,m-1,1);renderCalendar()}};
-$('addCalendarTrade').onclick=async()=>{if(!ready){toast('Your journal is still loading. Please try again.');return}await $('newTrade').onclick();$('tradeDate').value=selectedDay;$('entryClock').value='';$('exitClock').value='';$('exitDay').value='same';$('exitDate').value=selectedDay;composeTradeTimes();scheduleDraft();$('reason').focus({preventScroll:true});$('tradeDate').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'})};
+$('addCalendarTrade').onclick=async()=>{if(!ready){toast('Your journal is still loading. Please try again.');return}await $('newTrade').onclick();$('tradeDate').value=selectedDay;if(window.refreshPlanContext)window.refreshPlanContext();$('entryClock').value='';$('exitClock').value='';$('exitDay').value='same';$('exitDate').value=selectedDay;composeTradeTimes();scheduleDraft();$('reason').focus({preventScroll:true});$('tradeDate').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'})};
 $('dayTrades').onclick=e=>{const button=e.target.closest('[data-calendar-edit]');if(button)editTrade(button.dataset.calendarEdit)};
 syncTimeControls();renderCalendar();const {list,cutoff}=filtered();renderDuration(list,TradeMath.summary(list,settings.balance));
 })();

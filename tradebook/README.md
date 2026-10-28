@@ -1,4 +1,4 @@
-# MNQ Tradebook — independent deployment
+# Futures Tradebook — independent deployment
 
 This folder ports the private ChatGPT Sites journal at source commit `3cf2a51d2a008e0f061a44403f4a94e4a9459993` to Vercel + Supabase. The existing Next.js application in the repository root is preserved.
 
@@ -41,3 +41,13 @@ Tests cover MNQ P&L, fees, risk multiples, drawdown, duration boundaries, draft 
 ## Data ownership
 
 GitHub stores code only. Supabase Postgres stores journal snapshots with atomic revision checks; its private Storage bucket holds screenshots. IndexedDB holds device-local recovery copies. Full JSON and CSV exports remain available. Hosting and storage depend on your Vercel/Supabase accounts, not ChatGPT Plus.
+
+## Multi-instrument and quicker entry
+
+Supports MNQ, NQ, MES, ES, YM, GC, MGC, CL and MCL. Missing symbols on legacy records mean MNQ; unsupported symbols are rejected. Calculations use outright futures tick sizes, not spread or options specifications. Contract values were checked against CME Group equity-index, micro equity, gold/micro gold and WTI/micro WTI documentation on 2026-10-28. Each instrument displays its contract-specification link in the app.
+
+Quick entry keeps price, risk, timing and short reflection visible. Detailed entry exposes analysis and checklist; hidden values are preserved and checkboxes are never auto-confirmed. Favourite instruments, last selection and entry mode sync in journal settings.
+
+Daily plans are keyed by device-local trade date and instrument, autosaved inside `settings.dailyPlans`, and included in full JSON backups. Attaching a plan explicitly copies its notes and stores an immutable JSON snapshot on the trade. Trade CSV includes the attachment, and plans have their own CSV export. Updating the daily plan does not rewrite saved trade snapshots.
+
+Dashboard and calendar share an instrument filter. History has a separate filter. The collapsed instrument comparison reports P&L and expectancy in R. Browser-local drafts remain supported. New test coverage includes every instrument's long/short P&L, valid tick increments, legacy records, plan attachment and independent snapshots, backup settings, filters and CSV.
