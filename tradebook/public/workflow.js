@@ -28,13 +28,15 @@ function cleanWorkflowSettings(source){
  const currentKey=()=>$('tradeDate').value+'|'+instrument.value;
  function planStatus(){const exists=!!settings.dailyPlans?.[planKey];$('planState').textContent=exists?'Plan saved with your journal':'No plan yet';$('attachPlan').disabled=!exists;$('attachedPlan').textContent=$('planKey').value?'Attached copy · '+$('planKey').value.replace('|',' · '):'No daily plan attached';}
  function loadPlan(){planKey=currentKey();$('planContext').textContent=planKey.replace('|',' · ');const plan=settings.dailyPlans?.[planKey]||{};for(const [k,id]of Object.entries(planFields))$(id).value=plan[k]||'';planStatus()}
- async function persistPlan(){clearTimeout(planTimer);if(!ready)return;const ok=await commit();$('planState').textContent=ok?'Plan saved · cloud sync follows':'Could not save — keep this page open';}
+ async function persistPlan(){clearTimeout(planTimer);planTimer=null;if(!ready)return;const ok=await commit();$('planState').textContent=ok?'Plan saved · cloud sync follows':'Could not save — keep this page open';}
  planner.addEventListener('input',()=>{
   if(!ready||!/^\d{4}-\d{2}-\d{2}\|/.test(planKey))return;
   settings.dailyPlans={...(settings.dailyPlans||{}),[planKey]:Object.fromEntries(Object.entries(planFields).map(([k,id])=>[k,$(id).value]))};
   $('planState').textContent='Saving plan…';$('attachPlan').disabled=false;clearTimeout(planTimer);planTimer=setTimeout(persistPlan,450);
  });
  planner.addEventListener('focusout',()=>{if(planTimer)persistPlan()});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&planTimer)persistPlan()});
+ window.addEventListener('beforeunload',event=>{if(planTimer){event.preventDefault();event.returnValue='';}});
  $('attachPlan').onclick=()=>{
   const plan=settings.dailyPlans?.[currentKey()];if(!plan)return toast('Write a daily plan first.');
   if(['premarket','gapLow','gapHigh','willingness'].some(k=>$(k).value)&&!confirm('Replace this trade’s premarket and gap notes with the saved daily plan?'))return;
