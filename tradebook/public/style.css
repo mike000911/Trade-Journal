@@ -64,138 +64,157 @@ button.primary,#newTrade{background:linear-gradient(135deg,#9481bdbc,#65508bbd 5
 
 /* Tradebook: shared visual language with the subscription landing page. */
 :root {
-  --bg:#211a17; --ink:#f5f2ef; --paper:#1c1612; --plum:#f5f2ef;
-  --accent:#ded4cb; --lavender:#b2aaa3; --muted:#b2aaa3;
-  --line:rgb(242 238 235 / 12%); --positive:#ded4cb; --negative:#d8cbc1;
+  --bg:#151e23; --ink:#eff3f5; --paper:#11191d; --plum:#eff3f5;
+  --accent:#cad8df; --lavender:#95b1c0; --muted:#95b1c0;
+  --line:rgb(234 240 243 / 12%); --positive:#cad8df; --negative:#c0d0d9;
   --heading:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --body:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --shadow:inset 1px 1px 1px #f4f0ed1f,0 8px 22px #0705042b;
-  --surface:linear-gradient(143deg,#bfac9c21,#cbbbad0a 48%,#bba69512),#15110ee6;
+  --shadow:inset 1px 1px 1px #edf2f41f,0 8px 22px #0406072b;
+  --surface:linear-gradient(143deg,#99b4c221,#abc1cd0a 48%,#92afbe12),#0d1316e6;
   color-scheme:dark;
 }
-body {background:radial-gradient(ellipse at 85% 0%,#44362b2e,transparent 48%),var(--bg);color:var(--ink);background-attachment:fixed}
+body {background:radial-gradient(ellipse at 85% 0%,#2a3c452e,transparent 48%),var(--bg);color:var(--ink);background-attachment:fixed}
 h1,h2,h3,.brand {font-family:var(--heading);letter-spacing:-.04em}
 h1 {font-weight:550} h2,h3 {font-weight:560}
-aside {background:linear-gradient(150deg,#2b231ce6,#15110eed);border-color:var(--line);border-radius:18px;box-shadow:var(--shadow);color:var(--muted)}
+aside {background:linear-gradient(150deg,#1b262ce6,#0d1316ed);border-color:var(--line);border-radius:18px;box-shadow:var(--shadow);color:var(--muted)}
 aside nav {border-color:var(--line);border-radius:12px;background:#ffffff03;box-shadow:none}
-.brand {color:var(--ink);font-size:24px}.brand-mark {background:var(--accent);color:#1b1611;border:0;border-radius:7px;transform:none}
+.brand {color:var(--ink);font-size:24px}.brand-mark {background:var(--accent);color:#10181c;border:0;border-radius:7px;transform:none}
 .dot,.nav.active .icon,.local .icon,.metric-top .icon {color:var(--accent)}
-.nav {color:var(--muted);border-radius:9px}.nav.active {color:var(--accent);background:linear-gradient(140deg,#e3dad321,#e3dad30c);border-color:#e5ddd738;box-shadow:inset 0 1px #f4f0ed18}
-.nav:hover {color:var(--ink);background:#e3dad312}
+.nav {color:var(--muted);border-radius:9px}.nav.active {color:var(--accent);background:linear-gradient(140deg,#d2dee421,#d2dee40c);border-color:#d6e0e638;box-shadow:inset 0 1px #edf2f418}
+.nav:hover {color:var(--ink);background:#d2dee412}
 .workspace,.tiny-label,.sidebar-note>span:last-child,.aside-bottom small {color:var(--muted)}
-.sidebar-note p,.aside-bottom {color:#e2d9d2}.sidebar-line {background:var(--accent)}
-.avatar,.header-avatar {background:#dacfc612;color:var(--accent);border-color:var(--line)}
+.sidebar-note p,.aside-bottom {color:#d1dde3}.sidebar-line {background:var(--accent)}
+.avatar,.header-avatar {background:#c4d4dc12;color:var(--accent);border-color:var(--line)}
 header,.aside-bottom,.panelhead,.form-section,.form-footer,.instrument-strip,.plan-attach,.entry-mode,.instrument-preferences {border-color:var(--line)}
 .crumb,.crumb span,.local,.hint,#periodNote,.stats small,.secondary-metrics small,.report-empty,.chart-label,.panel-kicker,.section-index,.draft-list>span,.journal-heading>span,footer {color:var(--muted)}
-.crumb b,.metric-top,.stats article>span,.secondary-metrics article>span {color:#cdc6c0}
-.eyebrow {color:#cbbbae;letter-spacing:.15em}
+.crumb b,.metric-top,.stats article>span,.secondary-metrics article>span {color:#b8cbd5}
+.eyebrow {color:#acc1cd;letter-spacing:.15em}
 .panel,.stats article,.secondary-metrics article,.secondary-metrics article:nth-child(5),.contract,.daily-planner,.selected-day {
   background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
 }
 .primary-stats article,.primary-stats article:first-child {border-top:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);color:var(--ink)}
-.primary-stats article:first-child {background:linear-gradient(140deg,#3f3228c9,#221b15);border-color:#ded4cb40}
+.primary-stats article:first-child {background:linear-gradient(140deg,#273740c9,#151e22);border-color:#cad8df40}
 .primary-stats article:first-child strong {color:var(--accent)!important}
-.primary-stats article:first-child .metric-top,.primary-stats article:first-child small {color:#d4c9c0}
+.primary-stats article:first-child .metric-top,.primary-stats article:first-child small {color:#bdced7}
 .primary-stats article:first-child .metric-top .icon {color:var(--accent)}
 .stats strong,.secondary-metrics article>strong,.duration-kpis strong,.day-total b,.duration-snapshot strong {font-family:var(--heading);font-weight:550;color:var(--ink);letter-spacing:-.045em}
 .secondary-metrics em {color:var(--muted)}
 button:not(.calendar-day):not(.day-trade),#newTrade {border-radius:9px;color:var(--ink);border:1px solid var(--line);background:linear-gradient(140deg,#ffffff1a,#ffffff08);box-shadow:inset 0 1px #ffffff17;backdrop-filter:blur(14px)}
-button:not(.calendar-day):not(.day-trade):hover {background-color:#ffffff12;border-color:#e5ddd763;box-shadow:inset 0 1px #ffffff20,0 6px 20px #00000033}
-button.primary,#newTrade {color:#1a1511!important;border-color:#ede7e3!important;background:linear-gradient(135deg,#e9e2dd,#ded4cb)!important;box-shadow:inset 0 1px #f8f6f4,0 0 25px #cebfb21f!important}
-.entry-mode button[aria-pressed=true] {background:#ded4cb!important;color:#1a1511;border-color:#ede7e3!important}
-.entry-steps {border-color:var(--line);border-radius:12px;background:#dacfc606;box-shadow:none}
-.entry-steps button,.entry-steps span {color:#cdc6c0}.entry-steps button:hover {background:#ffffff0c}
-input,textarea,select {color:var(--ink);background:#14100c;border-color:#ded4cb29;border-radius:9px;accent-color:var(--accent)}
-input::placeholder,textarea::placeholder {color:#998d83;opacity:1}
-input:focus,textarea:focus,select:focus {border-color:var(--accent);box-shadow:0 0 0 3px #ded4cb18;outline:none}
-input[type=file]::file-selector-button {background:#392e25;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:7px 10px;margin-right:10px}
-label,.dash-controls label,.reason-label,.check-row b {color:#e2dbd5}
+button:not(.calendar-day):not(.day-trade):hover {background-color:#ffffff12;border-color:#d6e0e663;box-shadow:inset 0 1px #ffffff20,0 6px 20px #00000033}
+button.primary,#newTrade {color:#10171b!important;border-color:#e2eaee!important;background:linear-gradient(135deg,#dce5ea,#cad8df)!important;box-shadow:inset 0 1px #f4f7f8,0 0 25px #b0c5d01f!important}
+.entry-mode button[aria-pressed=true] {background:#cad8df!important;color:#10171b;border-color:#e2eaee!important}
+.entry-steps {border-color:var(--line);border-radius:12px;background:#c4d4dc06;box-shadow:none}
+.entry-steps button,.entry-steps span {color:#b8cbd5}.entry-steps button:hover {background:#ffffff0c}
+input,textarea,select {color:var(--ink);background:#0c1114;border-color:#cad8df29;border-radius:9px;accent-color:var(--accent)}
+input::placeholder,textarea::placeholder {color:#7296aa;opacity:1}
+input:focus,textarea:focus,select:focus {border-color:var(--accent);box-shadow:0 0 0 3px #cad8df18;outline:none}
+input[type=file]::file-selector-button {background:#23333b;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:7px 10px;margin-right:10px}
+label,.dash-controls label,.reason-label,.check-row b {color:#d3dee4}
 .form-section>h3,.section-label>b,.panelhead h2,.entry-mode b,.daily-planner summary,.settings summary {color:var(--ink)}
-.editor>.panelhead,.form-footer,.filters,.history-intro,.trade-date-strip,.duration-snapshot,.quick-note,.quadrants {background:#dacfc607;border-color:var(--line)}
-.badge,.pill,.section-label>span {background:#ded4cb0d;color:#ded4cb;border-color:var(--line)}
-.pill.positive {background:#ded4cb12}.pill.negative {background:#d8cbc112}
+.editor>.panelhead,.form-footer,.filters,.history-intro,.trade-date-strip,.duration-snapshot,.quick-note,.quadrants {background:#c4d4dc07;border-color:var(--line)}
+.badge,.pill,.section-label>span {background:#cad8df0d;color:#cad8df;border-color:var(--line)}
+.pill.positive {background:#cad8df12}.pill.negative {background:#c0d0d912}
 .check-row,.image-card,.duration-kpis article {border-color:var(--line)}
 .check-row small,.check-heading span,.daily-planner summary small,.planner-actions span,.plan-attach span,.duration-kpis small,.duration-kpis article>span,.duration-period,.duration-snapshot span,.duration-snapshot small {color:var(--muted)}
-.risk {background:linear-gradient(150deg,#3b2f26,#1d1713);border-color:#ded4cb33}
+.risk {background:linear-gradient(150deg,#24343d,#121a1e);border-color:#cad8df33}
 .risk .panelhead,.risk .calc,.calc .net {border-color:var(--line)}
-.risk .hint,.risk .calc span,.risk .risk-values small,.live,.snapshot>span {color:#cabfb6}
+.risk .hint,.risk .calc span,.risk .risk-values small,.live,.snapshot>span {color:#b0c5d0}
 .risk-values b,.calc b,.snapshot>strong {color:var(--ink)}.snapshot em {color:var(--muted)}
-.riskbar b {background:#d8cbc1}.riskbar i {background:#ded4cb}
+.riskbar b {background:#c0d0d9}.riskbar i {background:#cad8df}
 .contract-top span:first-child,.contract b,.history-intro p,.history-instrument,.calendar-empty h4,#empty h3 {color:var(--ink)}
 .contract h3,.contract-top span:last-child,.contract>div:not(.contract-top),.contract p,.contract a,.note,.note p,.note b,.history-intro p span,.history-instrument small,.filters:after,#empty p {color:var(--muted)}
 .contract p {border-color:var(--line)}
-th {background:#dacfc606;color:#cbc1b8;border-color:var(--line)}td {border-color:var(--line)}
-tbody tr:hover {background:#ded4cb08}td small,td button:last-child {color:var(--muted)}
-.text-link {color:var(--accent);border-color:var(--line)}.text-link:hover {background:#ded4cb09}
+th {background:#c4d4dc06;color:#b2c6d1;border-color:var(--line)}td {border-color:var(--line)}
+tbody tr:hover {background:#cad8df08}td small,td button:last-child {color:var(--muted)}
+.text-link {color:var(--accent);border-color:var(--line)}.text-link:hover {background:#cad8df09}
 .activity-values article>span,.activity-values small {color:var(--muted)}
-.cloud-notice {background:#2e251d;border-color:#ded4cb33;color:#e2d9d2}.cloud-notice a {color:var(--accent)}
-dialog,#toast {background:#211a15;color:var(--ink);border-color:#ded4cb40;box-shadow:0 18px 50px #00000088}
-dialog::backdrop {background:#070605d9}
-.chart svg path {stroke:#e5ddd626}.chart svg text {fill:#b2aaa3}.chart svg polyline {stroke:var(--accent)}
-.calendar-panel {background:radial-gradient(ellipse at 0% 25%,#67544526,transparent 65%),var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
+.cloud-notice {background:#1c282f;border-color:#cad8df33;color:#d1dde3}.cloud-notice a {color:var(--accent)}
+dialog,#toast {background:#141d22;color:var(--ink);border-color:#cad8df40;box-shadow:0 18px 50px #00000088}
+dialog::backdrop {background:#040608d9}
+.chart svg path {stroke:#d5e0e626}.chart svg text {fill:#95b1c0}.chart svg polyline {stroke:var(--accent)}
+.calendar-panel {background:radial-gradient(ellipse at 0% 25%,#405c6c26,transparent 65%),var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
 .calendar-zone,.calendar-toolbar>div>span,.calendar-weekdays,.calendar-legend,.calendar-day small,.calendar-day .day-count,.day-detail,.day-total small,.day-trade small {color:var(--muted)}
-.month-jump input,.month-jump input:focus {background:#2b231c;border-color:var(--line);color:var(--ink)}
-.calendar-day,.calendar-day.day-flat {background:linear-gradient(143deg,#bfac9c21,#cbbbad0a 48%,#bba69512),#15110e91;border-color:var(--line);box-shadow:inset 1px 1px 1px #f4f0ed1f,inset -1px -1px 2px #7d645024,0 3px 9px #00000022;color:var(--ink);border-radius:12px}
-.calendar-day:before {border-color:#f4f0ed18;background:linear-gradient(125deg,#fff06,transparent 35%,transparent 70%,#fff03)}
-.calendar-day>span {color:#e5ddd6}.calendar-day.is-today>span {color:var(--accent)}
-.calendar-day.day-profit {background:linear-gradient(140deg,#44362ba6,#231c17b3);color:var(--positive)}
-.calendar-day.day-loss {background:linear-gradient(140deg,#493a2ea6,#29221cb3);color:var(--negative)}
-.calendar-day.selected {background:linear-gradient(140deg,#4f3f32,#2d241d);border-color:#ded4cb;box-shadow:inset 0 1px #f4f0ed33,0 0 0 2px #ded4cb1a}
-.day-trade {background:#dacfc608;border-color:var(--line);color:var(--ink)}.day-trade:hover {background:#dacfc612}
-.calendar-empty,.calendar-empty p {color:var(--muted)}.calendar-empty>span,#empty>span {background:#ded4cb0a;border-color:var(--line);color:var(--accent)}
+.month-jump input,.month-jump input:focus {background:#1b262c;border-color:var(--line);color:var(--ink)}
+.calendar-day,.calendar-day.day-flat {background:linear-gradient(143deg,#99b4c221,#abc1cd0a 48%,#92afbe12),#0d131691;border-color:var(--line);box-shadow:inset 1px 1px 1px #edf2f41f,inset -1px -1px 2px #4d6e8024,0 3px 9px #00000022;color:var(--ink);border-radius:12px}
+.calendar-day:before {border-color:#edf2f418;background:linear-gradient(125deg,#fff06,transparent 35%,transparent 70%,#fff03)}
+.calendar-day>span {color:#d5e0e6}.calendar-day.is-today>span {color:var(--accent)}
+.calendar-day.day-profit {background:linear-gradient(140deg,#2a3c45a6,#161f24b3);color:var(--positive)}
+.calendar-day.day-loss {background:linear-gradient(140deg,#2d404aa6,#1a252bb3);color:var(--negative)}
+.calendar-day.selected {background:linear-gradient(140deg,#304551,#1c282e);border-color:#cad8df;box-shadow:inset 0 1px #edf2f433,0 0 0 2px #cad8df1a}
+.day-trade {background:#c4d4dc08;border-color:var(--line);color:var(--ink)}.day-trade:hover {background:#c4d4dc12}
+.calendar-empty,.calendar-empty p {color:var(--muted)}.calendar-empty>span,#empty>span {background:#cad8df0a;border-color:var(--line);color:var(--accent)}
 .profit-dot,.draft-dot {background:var(--accent)}.loss-dot {background:var(--negative)}
-.duration-win i {background:#ded4cb12}.duration-win b {background:var(--accent)}
+.duration-win i {background:#cad8df12}.duration-win b {background:var(--accent)}
 :is(button,a,summary):focus-visible,.calendar-day:focus-visible {outline:2px solid var(--accent);outline-offset:4px}
 @media(hover:hover) and (pointer:fine) {
-  .calendar-day:hover {background:#3a2e25;border-color:#e5ddd763;box-shadow:inset 1px 1px 2px #f4f1ef33,0 18px 45px #00000077}
-  .calendar-day.day-profit:hover {background:#483a2e}.calendar-day.day-loss:hover {background:#4a3b2f}
+  .calendar-day:hover {background:#24333b;border-color:#d6e0e663;box-shadow:inset 1px 1px 2px #eef3f533,0 18px 45px #00000077}
+  .calendar-day.day-profit:hover {background:#2c3f4a}.calendar-day.day-loss:hover {background:#2d414c}
 }
 @media(max-width:900px) {aside {border-radius:0 0 18px 18px}.nav.active {border-radius:9px}}
 @media(max-width:600px) {.stats article,.panel {border-radius:16px}.calendar-day {border-radius:9px}}
-@supports not (backdrop-filter:blur(12px)) {.panel,.stats article,.calendar-day,aside {background-color:#211a15}}
+@supports not (backdrop-filter:blur(12px)) {.panel,.stats article,.calendar-day,aside {background-color:#141d22}}
 @media(prefers-reduced-transparency:reduce) {
-  aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#211a15;backdrop-filter:none;-webkit-backdrop-filter:none}
-  .calendar-day.day-profit {background:#3e3228}.calendar-day.day-loss {background:#42352b}
+  aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#141d22;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .calendar-day.day-profit {background:#263740}.calendar-day.day-loss {background:#293b44}
 }
 
 .history-intro .icon,.history .section-index,.panelhead>.icon {color:var(--accent)}
 
 /* Nude / espresso: matte material inspired by LiquidGlassKit's tint and edge layers.
    Browser CSS approximation; no Swift, private Apple API, or Metal dependency. */
-:root {--bg:#211a17;--ink:#f3e9e1;--plum:#f3e9e1;--paper:#302722;--accent:#e4c9b4;--muted:#c0aea0;--lavender:#c0aea0;--line:#ead3be26;--positive:#c5d0b2;--negative:#e4aaa0;--surface:linear-gradient(145deg,#eed6c51a,#ead4c309 52%,#bca38e0e),#302722b8;--shadow:inset 1px 1px 1px #fff0df29,inset -1px -1px 1px #0f090729,0 12px 30px #10090626}
-body {background:radial-gradient(ellipse at 85% 0%,#a17e5e2b,transparent 48%),radial-gradient(ellipse at 10% 70%,#cdb2a00b,transparent 50%),var(--bg)}
-aside {background:linear-gradient(145deg,#544032a6,#261d18e0);backdrop-filter:blur(26px) saturate(75%);-webkit-backdrop-filter:blur(26px) saturate(75%)}
+:root {--bg:#151e23;--ink:#e1edf3;--plum:#e1edf3;--paper:#1f2c33;--accent:#b4d3e4;--muted:#9cb6c4;--lavender:#9cb6c4;--line:#bedbea26;--positive:#b2c6d0;--negative:#a0cce4;--surface:linear-gradient(145deg,#c5e0ee1a,#c3dcea09 52%,#8eacbc0e),#1f2c33b8;--shadow:inset 1px 1px 1px #e4f2fa29,inset -1px -1px 1px #070c0f29,0 12px 30px #060c1026}
+body {background:radial-gradient(ellipse at 85% 0%,#5e8aa12b,transparent 48%),radial-gradient(ellipse at 10% 70%,#a0bdcd0b,transparent 50%),var(--bg)}
+aside {background:linear-gradient(145deg,#324854a6,#172127e0);backdrop-filter:blur(26px) saturate(75%);-webkit-backdrop-filter:blur(26px) saturate(75%)}
 .panel,.stats article,.secondary-metrics article,.contract,.selected-day,.calendar-day {backdrop-filter:blur(20px) saturate(75%);-webkit-backdrop-filter:blur(20px) saturate(75%);box-shadow:var(--shadow)}
-.calendar-day {background:linear-gradient(140deg,#ead6c520,#ddc2ac0a),#46372c7a}
-.calendar-day.selected {border-color:#e4c9b4;background:linear-gradient(140deg,#705744b3,#4c3b2fa6)}
-button.primary,#newTrade {background:linear-gradient(135deg,#eddacb,#d8baa2)!important;color:#302219!important;border-color:#f0ded0b0!important;box-shadow:inset 0 1px #fff4e999,0 5px 16px #0f09072b!important}
-button:not(.calendar-day):not(.day-trade),.nav.active {backdrop-filter:blur(20px) saturate(75%);-webkit-backdrop-filter:blur(20px) saturate(75%);box-shadow:inset 1px 1px 1px #fff0df29,inset -1px -1px 1px #0f090729,0 4px 14px #1009061a;transition:background-color 280ms ease,box-shadow 280ms ease,transform 360ms cubic-bezier(.2,.8,.2,1)}
-input,textarea,select {background:#241d19;color:#f3e9e1;border-color:#ead3be29}
-.calendar-day.day-profit {background:linear-gradient(140deg,#4a50382e,#302a21b3);color:var(--positive)}
-.calendar-day.day-loss {background:linear-gradient(140deg,#6d443638,#34251fb3);color:var(--negative)}
+.calendar-day {background:linear-gradient(140deg,#c5ddea20,#acccdd0a),#2b3d477a}
+.calendar-day.selected {border-color:#b4d3e4;background:linear-gradient(140deg,#436170b3,#2e424da6)}
+button.primary,#newTrade {background:linear-gradient(135deg,#cbe1ed,#a2c5d8)!important;color:#192830!important;border-color:#d0e5f0b0!important;box-shadow:inset 0 1px #edf6fb99,0 5px 16px #070c0f2b!important}
+button:not(.calendar-day):not(.day-trade),.nav.active {backdrop-filter:blur(20px) saturate(75%);-webkit-backdrop-filter:blur(20px) saturate(75%);box-shadow:inset 1px 1px 1px #e4f2fa29,inset -1px -1px 1px #070c0f29,0 4px 14px #060c101a;transition:background-color 280ms ease,box-shadow 280ms ease,transform 360ms cubic-bezier(.2,.8,.2,1)}
+input,textarea,select {background:#172126;color:#e1edf3;border-color:#bedbea29}
+.calendar-day.day-profit {background:linear-gradient(140deg,#3349552e,#1e2c33b3);color:var(--positive)}
+.calendar-day.day-loss {background:linear-gradient(140deg,#365a6d38,#1f2d34b3);color:var(--negative)}
 .risk .positive {color:var(--positive)!important}.risk .negative {color:var(--negative)!important}
-@media(hover:hover) and (pointer:fine) {.calendar-day:hover {background:#5b4738;border-color:#f0ddcc70;box-shadow:inset 1px 1px 2px #fff0df40,0 14px 28px #10090655}.calendar-day.day-profit:hover {background:#454532}.calendar-day.day-loss:hover {background:#594035}}
-@media(prefers-reduced-transparency:reduce) {aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#352a23;backdrop-filter:none;-webkit-backdrop-filter:none}}
-@supports not (backdrop-filter:blur(12px)) {aside,.panel,.calendar-day {background-color:#352a23}}
+@media(hover:hover) and (pointer:fine) {.calendar-day:hover {background:#374f5c;border-color:#cce3f070;box-shadow:inset 1px 1px 2px #e4f2fa40,0 14px 28px #060c1055}.calendar-day.day-profit:hover {background:#2d404a}.calendar-day.day-loss:hover {background:#354c59}}
+@media(prefers-reduced-transparency:reduce) {aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#212f37;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@supports not (backdrop-filter:blur(12px)) {aside,.panel,.calendar-day {background-color:#212f37}}
 @media(prefers-reduced-motion:reduce) {button,.calendar-day {transition:none!important;transform:none!important}}
 
 /* LiquidGlassKit-inspired browser buttons: tinted backdrop, refractive rim,
    separate readable content, and an interactive lens-like press state. */
 button:not(.calendar-day):not(.day-trade) {
  position:relative;isolation:isolate;border-radius:999px!important;
- color:#f8eee5!important;border:1px solid #f7e4d45c!important;
- background:linear-gradient(155deg,#fff4e52b 0%,#ead2bd12 45%,#ac86622b 100%)!important;
+ color:#e5f1f8!important;border:1px solid #d4ebf75c!important;
+ background:linear-gradient(155deg,#e9f5fb2b 0%,#bddaea12 45%,#6292ac2b 100%)!important;
  backdrop-filter:blur(22px) saturate(110%);-webkit-backdrop-filter:blur(22px) saturate(110%);
- box-shadow:inset 0 1px 1px #fff7ec8c,inset 1px 0 1px #fff0df2b,inset 0 -1px 2px #1a0f0a66,0 5px 16px #120a0626!important;
- text-shadow:0 1px 2px #160c0840;
+ box-shadow:inset 0 1px 1px #eff7fc8c,inset 1px 0 1px #e4f2fa2b,inset 0 -1px 2px #0a141a66,0 5px 16px #060e1226!important;
+ text-shadow:0 1px 2px #08111640;
  transition:transform 360ms cubic-bezier(.16,1,.3,1),background-color 240ms ease,border-color 240ms ease,box-shadow 240ms ease!important;
 }
-button:not(.calendar-day):not(.day-trade)::before {content:'';position:absolute;inset:2px;pointer-events:none;border-radius:inherit;border-top:1px solid #fff7ed38;border-bottom:1px solid #e7c8ad1f;background:linear-gradient(115deg,#fff7eb0a,transparent 40%,transparent 65%,#fff7eb05);z-index:-1}
-button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:linear-gradient(145deg,#e7cbb897,#c3a18466 52%,#e5c6aa80)!important;color:#fff9f2!important;border-color:#ffe8d485!important;box-shadow:inset 0 1px 1px #fff8efb3,inset 0 -1px 2px #38221466,0 6px 20px #120a0638!important}
-@media(hover:hover) and (pointer:fine) {button:not(.calendar-day):not(.day-trade):hover {background-color:#e7cab825!important;transform:translateY(-2px);border-color:#fff0df99!important;box-shadow:inset 0 1px 2px #fff8efb3,inset 0 -1px 2px #38221466,0 9px 22px #120a0640!important}}
-button:not(.calendar-day):not(.day-trade):active {transform:translateY(1px) scale(.965)!important;box-shadow:inset 0 1px 3px #23140e33,inset 0 -1px 1px #fff3e84d,0 2px 8px #120a0626!important}
-button:not(.calendar-day):not(.day-trade):focus-visible {outline:2px solid #f2d9c4;outline-offset:4px}
+button:not(.calendar-day):not(.day-trade)::before {content:'';position:absolute;inset:2px;pointer-events:none;border-radius:inherit;border-top:1px solid #f0f8fc38;border-bottom:1px solid #add3e71f;background:linear-gradient(115deg,#eef7fc0a,transparent 40%,transparent 65%,#eef7fc05);z-index:-1}
+button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:linear-gradient(145deg,#b8d7e797,#84adc366 52%,#aad0e580)!important;color:#f4fafd!important;border-color:#dbeef885!important;box-shadow:inset 0 1px 1px #f2f9fcb3,inset 0 -1px 2px #142b3866,0 6px 20px #060e1238!important}
+@media(hover:hover) and (pointer:fine) {button:not(.calendar-day):not(.day-trade):hover {background-color:#b8d7e725!important;transform:translateY(-2px);border-color:#e4f2fa99!important;box-shadow:inset 0 1px 2px #f2f9fcb3,inset 0 -1px 2px #142b3866,0 9px 22px #060e1240!important}}
+button:not(.calendar-day):not(.day-trade):active {transform:translateY(1px) scale(.965)!important;box-shadow:inset 0 1px 3px #0e1c2333,inset 0 -1px 1px #ecf6fb4d,0 2px 8px #060e1226!important}
+button:not(.calendar-day):not(.day-trade):focus-visible {outline:2px solid #c4e2f2;outline-offset:4px}
 button:not(.calendar-day):not(.day-trade):disabled {opacity:.5;transform:none!important;cursor:not-allowed}
 @media(prefers-reduced-motion:reduce) {button:not(.calendar-day):not(.day-trade),button:not(.calendar-day):not(.day-trade):hover,button:not(.calendar-day):not(.day-trade):active {transition:none!important;transform:none!important}}
-@media(prefers-reduced-transparency:reduce) {button:not(.calendar-day):not(.day-trade) {background:#554338!important;backdrop-filter:none;-webkit-backdrop-filter:none}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#765b48!important}}
-@supports not (backdrop-filter:blur(12px)) {button:not(.calendar-day):not(.day-trade) {background:#554338!important}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#765b48!important}}
+@media(prefers-reduced-transparency:reduce) {button:not(.calendar-day):not(.day-trade) {background:#354c58!important;backdrop-filter:none;-webkit-backdrop-filter:none}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#476677!important}}
+@supports not (backdrop-filter:blur(12px)) {button:not(.calendar-day):not(.day-trade) {background:#354c58!important}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#476677!important}}
+
+/* Ocean palette and decorative trading artwork. */
+:root {--bg:#040C0A;--ink:#e5f5ff;--plum:#e5f5ff;--paper:#081F3B;--accent:#2AE7F5;--lavender:#79c1e3;--muted:#94c4d4;--line:#79c1e333;--positive:#7ce6fa;--negative:#efb1b9;--surface:linear-gradient(145deg,#79c1e31c,#72b2d50a 52%,#19587E1a),#081F3BC9}
+body {background:linear-gradient(#040c0ab8,#081f3bcc),url('/trading-abstract.webp') center top / cover fixed no-repeat,#040C0A}
+aside {background:linear-gradient(145deg,#19587eb0,#081f3be6)}
+button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:linear-gradient(145deg,#79c1e350,#19587ea6 52%,#13e4fc30)!important;color:#e5faff!important;border-color:#7ce6fa85!important}
+.calendar-panel {background:linear-gradient(145deg,#79c1e31f,#19587e12),#081f3ba3;backdrop-filter:blur(24px) saturate(120%);-webkit-backdrop-filter:blur(24px) saturate(120%);border-color:#79c1e333}
+.calendar-day,.calendar-day.day-flat {background:linear-gradient(155deg,#79c1e32e,#72b2d512 45%,#19587e33);border:1px solid #7ce6fa50;backdrop-filter:blur(22px) saturate(115%);-webkit-backdrop-filter:blur(22px) saturate(115%);box-shadow:inset 0 1px 1px #c5f7ff8c,inset 1px 0 1px #7ce6fa2b,inset 0 -1px 2px #040c0a66,0 5px 16px #040c0a38;transition:transform 360ms cubic-bezier(.16,1,.3,1),background-color 240ms ease,box-shadow 240ms ease;border-radius:18px;color:#e5f5ff}
+.calendar-day::before {inset:2px;border-radius:inherit;border-top:1px solid #d6faff50;border-bottom:1px solid #67c4ee30;background:linear-gradient(115deg,#7ce6fa12,transparent 40%,transparent 65%,#79c1e30a)}
+.calendar-day.selected {border-color:#13e4fc;background:linear-gradient(145deg,#19587e99,#2ae7f52e);box-shadow:inset 0 1px 2px #d6faff99,0 0 0 2px #13e4fc24,0 6px 18px #040c0a4d}
+.calendar-day.day-profit {background:linear-gradient(145deg,#19587e80,#2ae7f51f);color:var(--positive)}
+.calendar-day.day-loss {background:linear-gradient(145deg,#58374f66,#081f3b80);color:var(--negative)}
+.calendar-day .day-count,.calendar-day>span {color:#b8def0}.calendar-day.is-today>span {color:#13e4fc}
+.risk .positive {color:var(--positive)!important}.risk .negative {color:var(--negative)!important}
+@media(hover:hover) and (pointer:fine) {.calendar-day:hover {transform:scale(1.15);z-index:5;background:linear-gradient(145deg,#67c4ee47,#19587e99);border-color:#7ce6fab3;box-shadow:inset 0 1px 2px #d6faffcc,inset 0 -1px 2px #040c0a66,0 12px 26px #040c0a66}.calendar-day.day-loss:hover {background:#42334f}.calendar-day:active {transform:scale(1.03)}}
+@media(max-width:600px) {.calendar-day {border-radius:12px}body {background-attachment:scroll}}
+@media(prefers-reduced-motion:reduce) {.calendar-day,.calendar-day:hover,.calendar-day:active {transform:none!important;transition:none!important}}
+@media(prefers-reduced-transparency:reduce) {.calendar-panel,.calendar-day,.calendar-day.selected {background:#081F3B;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@supports not (backdrop-filter:blur(12px)) {.calendar-panel,.calendar-day {background-color:#081F3B}}
