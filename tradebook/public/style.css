@@ -178,3 +178,24 @@ input,textarea,select {background:#241d19;color:#f3e9e1;border-color:#ead3be29}
 @media(prefers-reduced-transparency:reduce) {aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#352a23;backdrop-filter:none;-webkit-backdrop-filter:none}}
 @supports not (backdrop-filter:blur(12px)) {aside,.panel,.calendar-day {background-color:#352a23}}
 @media(prefers-reduced-motion:reduce) {button,.calendar-day {transition:none!important;transform:none!important}}
+
+/* LiquidGlassKit-inspired browser buttons: tinted backdrop, refractive rim,
+   separate readable content, and an interactive lens-like press state. */
+button:not(.calendar-day):not(.day-trade) {
+ position:relative;isolation:isolate;border-radius:999px!important;
+ color:#f8eee5!important;border:1px solid #f7e4d45c!important;
+ background:linear-gradient(155deg,#fff4e52b 0%,#ead2bd12 45%,#ac86622b 100%)!important;
+ backdrop-filter:blur(22px) saturate(110%);-webkit-backdrop-filter:blur(22px) saturate(110%);
+ box-shadow:inset 0 1px 1px #fff7ec8c,inset 1px 0 1px #fff0df2b,inset 0 -1px 2px #1a0f0a66,0 5px 16px #120a0626!important;
+ text-shadow:0 1px 2px #160c0840;
+ transition:transform 360ms cubic-bezier(.16,1,.3,1),background-color 240ms ease,border-color 240ms ease,box-shadow 240ms ease!important;
+}
+button:not(.calendar-day):not(.day-trade)::before {content:'';position:absolute;inset:2px;pointer-events:none;border-radius:inherit;border-top:1px solid #fff7ed38;border-bottom:1px solid #e7c8ad1f;background:linear-gradient(115deg,#fff7eb0a,transparent 40%,transparent 65%,#fff7eb05);z-index:-1}
+button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:linear-gradient(145deg,#e7cbb897,#c3a18466 52%,#e5c6aa80)!important;color:#fff9f2!important;border-color:#ffe8d485!important;box-shadow:inset 0 1px 1px #fff8efb3,inset 0 -1px 2px #38221466,0 6px 20px #120a0638!important}
+@media(hover:hover) and (pointer:fine) {button:not(.calendar-day):not(.day-trade):hover {background-color:#e7cab825!important;transform:translateY(-2px);border-color:#fff0df99!important;box-shadow:inset 0 1px 2px #fff8efb3,inset 0 -1px 2px #38221466,0 9px 22px #120a0640!important}}
+button:not(.calendar-day):not(.day-trade):active {transform:translateY(1px) scale(.965)!important;box-shadow:inset 0 1px 3px #23140e33,inset 0 -1px 1px #fff3e84d,0 2px 8px #120a0626!important}
+button:not(.calendar-day):not(.day-trade):focus-visible {outline:2px solid #f2d9c4;outline-offset:4px}
+button:not(.calendar-day):not(.day-trade):disabled {opacity:.5;transform:none!important;cursor:not-allowed}
+@media(prefers-reduced-motion:reduce) {button:not(.calendar-day):not(.day-trade),button:not(.calendar-day):not(.day-trade):hover,button:not(.calendar-day):not(.day-trade):active {transition:none!important;transform:none!important}}
+@media(prefers-reduced-transparency:reduce) {button:not(.calendar-day):not(.day-trade) {background:#554338!important;backdrop-filter:none;-webkit-backdrop-filter:none}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#765b48!important}}
+@supports not (backdrop-filter:blur(12px)) {button:not(.calendar-day):not(.day-trade) {background:#554338!important}button.primary,#newTrade,.entry-mode button[aria-pressed=true] {background:#765b48!important}}
