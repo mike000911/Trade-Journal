@@ -61,3 +61,101 @@ button.primary,#newTrade{background:linear-gradient(135deg,#9481bdbc,#65508bbd 5
 /* A lighter entry flow, with optional depth. */
 .instrument-strip,.entry-mode,.plan-attach{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 25px;border-bottom:1px solid #d6d3de80}.instrument-strip label{min-width:160px}.instrument-strip .hint{margin:0;max-width:310px}.entry-mode{padding:20px 0;margin-bottom:12px}.entry-mode b{font-family:var(--heading);font-size:20px;color:var(--plum)}.entry-mode p{font-size:12px;margin-top:6px}.entry-mode>div:last-child{display:flex;gap:8px;flex-shrink:0}.entry-mode button[aria-pressed=true]{background:#423866!important;color:#fff;border-color:#6a5aa5!important}.quick-note{padding:16px 25px;background:#ebe5f34d;font-size:12px;color:#756387}#tradeForm[data-entry-mode=quick] .entry-extra{display:none}.daily-planner{margin:0 0 20px;background:#f5f1fa9c}.daily-planner summary{cursor:pointer;padding:20px 25px;font-family:var(--heading);font-size:19px;color:var(--plum)}.daily-planner summary small{font-family:var(--body);font-size:12px;margin-left:20px;color:#807092}.planner-body{padding:0 25px 24px}.planner-body label{display:block;margin-top:12px}.planner-body textarea{min-height:85px}.planner-actions{display:flex;align-items:center;gap:14px;justify-content:space-between;margin-top:18px}.planner-actions span,.plan-attach span{font-size:12px;color:#79648d}.instrument-preferences{padding-top:20px;border-top:1px solid #ded5e8;margin-top:20px}.instrument-preferences summary{cursor:pointer}.favorite-options{display:flex;flex-wrap:wrap;gap:16px;padding:18px 0}.favorite-options label{display:flex;align-items:center;gap:7px}.favorite-options input{width:16px;height:16px;margin:0}.dash-controls{flex-wrap:wrap}.filters select{max-width:180px}
 @media(max-width:700px){.entry-mode{align-items:flex-start;flex-direction:column}.instrument-strip{align-items:flex-start;gap:12px}.instrument-strip label{min-width:110px}.plan-attach{padding:16px;flex-wrap:wrap}.planner-actions{align-items:flex-start;flex-direction:column}.daily-planner summary small{display:block;margin:7px 0 0}.dash-controls{gap:8px}.filters{flex-wrap:wrap}}
+
+/* Tradebook: shared visual language with the subscription landing page. */
+:root {
+  --bg:#0a100e; --ink:#eff5f1; --paper:#111d18; --plum:#eff5f1;
+  --accent:#b5f4cd; --lavender:#a3b2aa; --muted:#a3b2aa;
+  --line:rgb(222 255 238 / 12%); --positive:#b5f4cd; --negative:#f2a7b5;
+  --heading:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --shadow:inset 1px 1px 1px #e2fff11f,0 8px 22px #0209052b;
+  --surface:linear-gradient(143deg,#8fccac21,#a8d0bf0a 48%,#91bfa812),#0d1613e6;
+  color-scheme:dark;
+}
+body {background:radial-gradient(ellipse at 85% 0%,#254a352e,transparent 48%),var(--bg);color:var(--ink);background-attachment:fixed}
+h1,h2,h3,.brand {font-family:var(--heading);letter-spacing:-.04em}
+h1 {font-weight:550} h2,h3 {font-weight:560}
+aside {background:linear-gradient(150deg,#192e22e6,#0d1613ed);border-color:var(--line);border-radius:18px;box-shadow:var(--shadow);color:var(--muted)}
+aside nav {border-color:var(--line);border-radius:12px;background:#ffffff03;box-shadow:none}
+.brand {color:var(--ink);font-size:24px}.brand-mark {background:var(--accent);color:#0b2116;border:0;border-radius:7px;transform:none}
+.dot,.nav.active .icon,.local .icon,.metric-top .icon {color:var(--accent)}
+.nav {color:var(--muted);border-radius:9px}.nav.active {color:var(--accent);background:linear-gradient(140deg,#c1f5d721,#c1f5d70c);border-color:#c5f7dd38;box-shadow:inset 0 1px #e2fff118}
+.nav:hover {color:var(--ink);background:#c1f5d712}
+.workspace,.tiny-label,.sidebar-note>span:last-child,.aside-bottom small {color:var(--muted)}
+.sidebar-note p,.aside-bottom {color:#d1e3d8}.sidebar-line {background:var(--accent)}
+.avatar,.header-avatar {background:#b1efc612;color:var(--accent);border-color:var(--line)}
+header,.aside-bottom,.panelhead,.form-section,.form-footer,.instrument-strip,.plan-attach,.entry-mode,.instrument-preferences {border-color:var(--line)}
+.crumb,.crumb span,.local,.hint,#periodNote,.stats small,.secondary-metrics small,.report-empty,.chart-label,.panel-kicker,.section-index,.draft-list>span,.journal-heading>span,footer {color:var(--muted)}
+.crumb b,.metric-top,.stats article>span,.secondary-metrics article>span {color:#c0cdc5}
+.eyebrow {color:#a5d4b8;letter-spacing:.15em}
+.panel,.stats article,.secondary-metrics article,.secondary-metrics article:nth-child(5),.contract,.daily-planner,.selected-day {
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+}
+.primary-stats article,.primary-stats article:first-child {border-top:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);color:var(--ink)}
+.primary-stats article:first-child {background:linear-gradient(140deg,#224531c9,#14231c);border-color:#b5f4cd40}
+.primary-stats article:first-child strong {color:var(--accent)!important}
+.primary-stats article:first-child .metric-top,.primary-stats article:first-child small {color:#c0d4c8}
+.primary-stats article:first-child .metric-top .icon {color:var(--accent)}
+.stats strong,.secondary-metrics article>strong,.duration-kpis strong,.day-total b,.duration-snapshot strong {font-family:var(--heading);font-weight:550;color:var(--ink);letter-spacing:-.045em}
+.secondary-metrics em {color:var(--muted)}
+button:not(.calendar-day):not(.day-trade),#newTrade {border-radius:9px;color:var(--ink);border:1px solid var(--line);background:linear-gradient(140deg,#ffffff1a,#ffffff08);box-shadow:inset 0 1px #ffffff17;backdrop-filter:blur(14px)}
+button:not(.calendar-day):not(.day-trade):hover {background-color:#ffffff12;border-color:#c5f7dd63;box-shadow:inset 0 1px #ffffff20,0 6px 20px #0003}
+button.primary,#newTrade {color:#0b2015!important;border-color:#d7f9e4!important;background:linear-gradient(135deg,#cdf9dd,#b5f4cd)!important;box-shadow:inset 0 1px #edfff4,0 0 25px #85fbb81f!important}
+.entry-mode button[aria-pressed=true] {background:#b5f4cd!important;color:#0b2015;border-color:#d7f9e4!important}
+.entry-steps {border-color:var(--line);border-radius:12px;background:#b1efc606;box-shadow:none}
+.entry-steps button,.entry-steps span {color:#c0cdc5}.entry-steps button:hover {background:#ffffff0c}
+input,textarea,select {color:var(--ink);background:#0b1510;border-color:#c0e9d529;border-radius:9px;accent-color:var(--accent)}
+input::placeholder,textarea::placeholder {color:#83998c;opacity:1}
+input:focus,textarea:focus,select:focus {border-color:var(--accent);box-shadow:0 0 0 3px #b5f4cd18;outline:none}
+input[type=file]::file-selector-button {background:#233b2d;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:7px 10px;margin-right:10px}
+label,.dash-controls label,.reason-label,.check-row b {color:#d5e2d9}
+.form-section>h3,.section-label>b,.panelhead h2,.entry-mode b,.daily-planner summary,.settings summary {color:var(--ink)}
+.editor>.panelhead,.form-footer,.filters,.history-intro,.trade-date-strip,.duration-snapshot,.quick-note,.quadrants {background:#b1efc607;border-color:var(--line)}
+.badge,.pill,.section-label>span {background:#b5f4cd0d;color:#b5f4cd;border-color:var(--line)}
+.pill.positive {background:#b5f4cd12}.pill.negative {background:#f2a7b512}
+.check-row,.image-card,.duration-kpis article {border-color:var(--line)}
+.check-row small,.check-heading span,.daily-planner summary small,.planner-actions span,.plan-attach span,.duration-kpis small,.duration-kpis article>span,.duration-period,.duration-snapshot span,.duration-snapshot small {color:var(--muted)}
+.risk {background:linear-gradient(150deg,#233e2e,#102018);border-color:#b5f4cd33}
+.risk .panelhead,.risk .calc,.calc .net {border-color:var(--line)}
+.risk .hint,.risk .calc span,.risk .risk-values small,.live,.snapshot>span {color:#b6cabd}
+.risk-values b,.calc b,.snapshot>strong {color:var(--ink)}.snapshot em {color:var(--muted)}
+.riskbar b {background:#f2a7b5}.riskbar i {background:#b5f4cd}
+.contract-top span:first-child,.contract b,.history-intro p,.history-instrument,.calendar-empty h4,#empty h3 {color:var(--ink)}
+.contract h3,.contract-top span:last-child,.contract>div:not(.contract-top),.contract p,.contract a,.note,.note p,.note b,.history-intro p span,.history-instrument small,.filters:after,#empty p {color:var(--muted)}
+.contract p {border-color:var(--line)}
+th {background:#b1efc606;color:#b8cbbf;border-color:var(--line)}td {border-color:var(--line)}
+tbody tr:hover {background:#b5f4cd08}td small,td button:last-child {color:var(--muted)}
+.text-link {color:var(--accent);border-color:var(--line)}.text-link:hover {background:#b5f4cd09}
+.activity-values article>span,.activity-values small {color:var(--muted)}
+.cloud-notice {background:#1b3024;border-color:#b5f4cd33;color:#d1e3d8}.cloud-notice a {color:var(--accent)}
+dialog,#toast {background:#14221b;color:var(--ink);border-color:#b5f4cd40;box-shadow:0 18px 50px #0008}
+dialog::backdrop {background:#030906d9}
+.chart svg path {stroke:#d1eadc26}.chart svg text {fill:#a3b2aa}.chart svg polyline {stroke:var(--accent)}
+.calendar-panel {background:radial-gradient(ellipse at 0% 25%,#45675226,transparent 65%),var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
+.calendar-zone,.calendar-toolbar>div>span,.calendar-weekdays,.calendar-legend,.calendar-day small,.calendar-day .day-count,.day-detail,.day-total small,.day-trade small {color:var(--muted)}
+.month-jump input,.month-jump input:focus {background:#1b2c21;border-color:var(--line);color:var(--ink)}
+.calendar-day,.calendar-day.day-flat {background:linear-gradient(143deg,#8fccac21,#a8d0bf0a 48%,#91bfa812),#0d161391;border-color:var(--line);box-shadow:inset 1px 1px 1px #e2fff11f,inset -1px -1px 2px #48856724,0 3px 9px #0002;color:var(--ink);border-radius:12px}
+.calendar-day:before {border-color:#e2fff118;background:linear-gradient(125deg,#fff06,transparent 35%,transparent 70%,#fff03)}
+.calendar-day>span {color:#d1eadc}.calendar-day.is-today>span {color:var(--accent)}
+.calendar-day.day-profit {background:linear-gradient(140deg,#234c36a6,#13271db3);color:var(--positive)}
+.calendar-day.day-loss {background:linear-gradient(140deg,#4e2933a6,#291c22b3);color:var(--negative)}
+.calendar-day.selected {background:linear-gradient(140deg,#30513d,#1a3023);border-color:#b5f4cd;box-shadow:inset 0 1px #e2fff133,0 0 0 2px #b5f4cd1a}
+.day-trade {background:#b1efc608;border-color:var(--line);color:var(--ink)}.day-trade:hover {background:#b1efc612}
+.calendar-empty,.calendar-empty p {color:var(--muted)}.calendar-empty>span,#empty>span {background:#b5f4cd0a;border-color:var(--line);color:var(--accent)}
+.profit-dot,.draft-dot {background:var(--accent)}.loss-dot {background:var(--negative)}
+.duration-win i {background:#b5f4cd12}.duration-win b {background:var(--accent)}
+:is(button,a,summary):focus-visible,.calendar-day:focus-visible {outline:2px solid var(--accent);outline-offset:4px}
+@media(hover:hover) and (pointer:fine) {
+  .calendar-day:hover {background:#243b2d;border-color:#c5f7dd63;box-shadow:inset 1px 1px 2px #e4fff333,0 18px 45px #0007}
+  .calendar-day.day-profit:hover {background:#2a4c37}.calendar-day.day-loss:hover {background:#4c2d36}
+}
+@media(max-width:900px) {aside {border-radius:0 0 18px 18px}.nav.active {border-radius:9px}}
+@media(max-width:600px) {.stats article,.panel {border-radius:16px}.calendar-day {border-radius:9px}}
+@supports not (backdrop-filter:blur(12px)) {.panel,.stats article,.calendar-day,aside {background-color:#14221b}}
+@media(prefers-reduced-transparency:reduce) {
+  aside,.panel,.stats article,.secondary-metrics article,.calendar-panel,.calendar-day,.calendar-day.selected,button:not(.calendar-day):not(.day-trade) {background:#14221b;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .calendar-day.day-profit {background:#23432f}.calendar-day.day-loss {background:#432a32}
+}
+
+.history-intro .icon,.history .section-index,.panelhead>.icon {color:var(--accent)}
