@@ -1,3 +1,4 @@
+import { storage } from '../lib/storage.mjs';
 import { createClient } from '@supabase/supabase-js';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -69,29 +70,24 @@ export default async function handler(req,res) {
     }
     if(path==='/api/journal') {
       if(req.method==='GET') {
-        const {data,error}=await client.from('tradebook_journals').select('revision,state').eq('user_id',user).maybeSingle();
-        if(error)throw fail('Unable to load the cloud journal.',503);return json(data||{revision:0,state:null});
+        return json(await storage.loadJournal(user, client));
       }
       if(req.method!=='PUT')throw fail('Method not allowed',405);
       const {revision,state}=validateState(JSON.parse((await rawBody(req,1550000)).toString()));
-      const row={user_id:user,revision:revision+1,state,updated_at:new Date().toISOString()};
-      const result=revision===0?await client.from('tradebook_journals').insert(row).select('revision'):await client.from('tradebook_journals').update(row).eq('user_id',user).eq('revision',revision).select('revision');
-      if(result.error?.code==='23505'||(!result.error&&!result.data.length))throw fail('Another device updated the journal. Choose which copy to keep.',409);
-      if(result.error)throw fail('Unable to save the cloud journal.',503);return json({revision:revision+1});
+      return json(await storage.saveJournal(user, client, revision, state));
     }
     const match=path.match(/^\/api\/images\/([a-f0-9]{64})$/);
     if(match&&req.method==='GET') {
-      const {data,error}=await client.storage.from('tradebook-charts').download(user+'/'+match[1]);
-      if(error)throw fail('Screenshot unavailable.',404);
-      res.setHeader('Content-Type',data.type);return res.end(Buffer.from(await data.arrayBuffer()));
+      const image = await storage.loadImage(user, match[1], client);
+      res.setHeader('Content-Type',image.type);return res.end(image.bytes);
     }
     if(path==='/api/images'&&req.method==='POST') {
       const type=req.headers['content-type'];const bytes=await rawBody(req,4194304);
       if(!validImage(bytes,type))throw fail('Use a PNG, JPEG or WebP screenshot up to 4 MB.',415);
       const id=createHash('sha256').update(bytes).digest('hex');
-      const {error}=await client.storage.from('tradebook-charts').upload(user+'/'+id,bytes,{contentType:type,upsert:true});
-      if(error)throw fail('Unable to save screenshot.',503);return json({id,url:'/api/images/'+id});
+      return json(await storage.saveImage(user, id, bytes, type));
     }
     throw fail('Not found',404);
   }catch(error){json({error:error.status?error.message:'Request could not be completed.'},error.status||500)}
 }
+

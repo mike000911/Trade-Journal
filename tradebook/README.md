@@ -40,7 +40,7 @@ Tests cover MNQ P&L, fees, risk multiples, drawdown, duration boundaries, draft 
 
 ## Data ownership
 
-GitHub stores code only. Supabase Postgres stores journal snapshots with atomic revision checks; its private Storage bucket holds screenshots. IndexedDB holds device-local recovery copies. Full JSON and CSV exports remain available. Hosting and storage depend on your Vercel/Supabase accounts, not ChatGPT Plus.
+GitHub stores code only. Vercel private Blob storage holds journal snapshots and new screenshots. Journal updates use revision checks and conditional ETag writes to prevent lost updates across devices. Supabase still handles sign-in and the owner allowlist. Existing Supabase journals are read until the first successful Vercel save; existing screenshots remain readable from Supabase when not present in Vercel. No legacy records are deleted. IndexedDB holds device-local recovery copies. Full JSON and CSV exports remain available. Hosting and storage depend on your Vercel/Supabase accounts, not ChatGPT Plus.
 
 ## Multi-instrument and quicker entry
 
