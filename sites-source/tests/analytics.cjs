@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict'),M=require('../public/analytics.js');
+const t={id:'a',direction:'long',status:'closed',entry:21000,stop:20980,target:21040,contracts:2,fees:4,exit:21040,entryTime:'2026-10-25T09:30',exitTime:'2026-10-25T10:00'};
+assert.equal(M.result(t).gross,160);assert.equal(M.result(t).net,156);assert.equal(M.result(t).risk,80);assert.equal(M.result(t).r,1.95);assert.equal(M.result(t).ticks,160);
+assert.equal(M.result({...t,direction:'short',stop:21020,target:20960,exit:20960}).net,156);
+assert.equal(M.result({...t,exit:20980}).net,-84);assert.equal(M.result({...t,exit:21000,fees:0}).outcome,'Breakeven');assert.equal(M.result({...t,exit:21000}).outcome,'Loss');assert.equal(M.result({...t,status:'open'}).r,null);
+const a={...t,contracts:1,fees:0,exit:21050},b={...t,id:'b',contracts:1,fees:0,exit:20970,exitTime:'2026-10-25T11:00'},c={...t,id:'c',contracts:1,fees:0,exit:20970,exitTime:'2026-10-25T12:00'};
+let m=M.summary([c,a,b,{...t,id:'d',status:'draft'},{...t,id:'e',status:'open'}],1000);
+assert.equal(m.closed,3);assert.equal(m.executed,4);assert.equal(m.open,1);assert.equal(m.net,-20);assert.equal(m.maxDD,120);assert.ok(Math.abs(m.maxDDPct-120/1100*100)<1e-9);assert.equal(m.avgWin,100);assert.equal(m.avgLoss,60);assert.equal(m.pf,100/120);assert.ok(Math.abs(m.expectancy-(-.5/3))<1e-10);assert.equal(M.summary([]).pf,null);assert.equal(M.summary([a]).pf,Infinity);assert.equal(M.summary([b]).pf,0);assert.equal(M.summary([a]).maxDDPct,null);
+const checks=Object.fromEntries(['premarket','quadrants','midpoint','silver','open','risk','exit'].map(k=>[k,'done']));assert.equal(M.adherent({...a,checks,allRules:'yes'}),true);assert.equal(M.adherent({...a,checks:{...checks,silver:'na'},allRules:'yes'}),true);assert.equal(M.adherent({...a,checks:{...checks,silver:'missed'},allRules:'yes'}),false);assert.equal(M.adherent({...a,checks:{...checks,silver:'pending'},allRules:'yes'}),false);assert.equal(M.adherent({...a,checks,allRules:''}),false);assert.equal(M.summary([{...a,checks,allRules:'yes'},b]).adherence,50);assert.equal(M.group([a,b,c],x=>x.direction)[0].closed,3);
+console.log('PASS: MNQ pricing, long/short, fees, R, zero denominators, chronological drawdown, adherence, grouping, draft exclusion.');
+assert.equal(M.duration(t),30);
+assert.equal(M.duration({...t,status:'open'}),null);
+assert.equal(M.duration({...t,status:'draft'}),null);
+assert.equal(M.duration({...t,exitTime:'2026-10-25T09:00'}),null);
+assert.equal(M.duration({...t,entryTime:'2026-12-31T23:50',exitTime:'2027-01-01T00:10'}),20);
+assert.equal(M.duration({...t,entryISO:'2026-11-01T05:30:00Z',exitISO:'2026-11-01T06:30:00Z'}),60);
+assert.equal(M.duration({...t,exitTime:t.entryTime}),0);
+assert.equal(M.duration({...t,entryTime:'invalid'}),null);
+for(const [min,band] of [[0,'Under 5 min'],[5,'5–15 min'],[15,'15–30 min'],[30,'30–60 min'],[60,'60+ min']]){assert.equal(M.durationBand({...t,entryISO:'2026-10-25T09:00:00Z',exitISO:new Date(Date.parse('2026-10-25T09:00:00Z')+min*60000).toISOString()}),band)}
+const ds=M.summary([t,{...t,id:'loss',exit:20980,exitTime:'2026-10-25T10:30'}, {...t,id:'open',status:'open'}]);
+assert.equal(ds.avgDuration,45);assert.equal(ds.avgWinDuration,30);assert.equal(ds.avgLossDuration,60);assert.equal(ds.timedCount,2);
+assert.equal(M.summary([]).avgDuration,null);
+console.log('PASS: duration averages, overnight/year rollover, timestamp/DST offsets, open/draft exclusion, invalid times, duration band boundaries.');
