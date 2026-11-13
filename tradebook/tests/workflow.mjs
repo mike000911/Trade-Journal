@@ -17,7 +17,7 @@ assert(math.validPrice(-10.01,{instrument:'CL'}));
 const errors=[];const vc=new VirtualConsole();vc.on('jsdomError',e=>errors.push(e.message));
 const html=readFileSync(new URL('../journal/index.html',import.meta.url),'utf8');
 const dom=new JSDOM(html,{url:'https://journal.test/',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:vc});
-const w=dom.window;w.indexedDB=indexedDB;w.structuredClone=structuredClone;w.matchMedia=()=>({matches:false,addEventListener(){}});w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.confirm=()=>true;
+const w=dom.window;const identity=w.document.createElement('meta');identity.name='tradebook-user';identity.content='00000000-0000-4000-8000-000000000001';w.document.head.append(identity);const ownerMeta=w.document.createElement('meta');ownerMeta.name='tradebook-owner';ownerMeta.content='true';w.document.head.append(ownerMeta);w.indexedDB=indexedDB;w.structuredClone=structuredClone;w.matchMedia=()=>({matches:false,addEventListener(){}});w.scrollTo=()=>{};w.HTMLElement.prototype.scrollIntoView=()=>{};w.confirm=()=>true;
 let remote=null,revision=0;
 w.fetch=async(url,opts={})=>{if(url==='/api/journal'){if(opts.method==='PUT'){const p=JSON.parse(opts.body);remote=p.state;revision++;return {ok:true,json:async()=>({revision})}}return {ok:true,json:async()=>({state:remote,revision})}};throw Error('Unexpected URL '+url)};
 for(const script of w.document.querySelectorAll('script[src]'))vm.runInContext(readFileSync(new URL('../public/'+script.getAttribute('src'),import.meta.url),'utf8'),dom.getInternalVMContext());
@@ -42,3 +42,4 @@ assert(w.eval('csvData()').includes('instrument'));assert(w.eval('csvData()').in
 const restored=w.eval('cleanWorkflowSettings(settings)');assert.equal(restored.dailyPlans['2026-10-28|GC'].premarket,'A revised plan');
 w.document.getElementById('detailedMode').click();assert.equal(w.document.querySelector('#tradeForm').dataset.entryMode,'detailed');
 await new Promise(resolve=>setTimeout(resolve,900));await w.eval('queue');assert.deepEqual(errors,[]);w.close();console.log('PASS: all nine instruments, legacy MNQ, quick entry, daily plan persistence/snapshots, filters, CSV and unchanged checklist.');
+

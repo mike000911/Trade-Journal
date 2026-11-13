@@ -7,7 +7,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "test": "node tests/analytics.cjs && node --test tests/server.mjs tests/storage.mjs && node tests/workflow.mjs"
+    "test": "node tests/analytics.cjs && node --test tests/server.mjs tests/storage.mjs tests/accounts.mjs && node tests/workflow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0",

@@ -51,3 +51,15 @@ Quick entry keeps price, risk, timing and short reflection visible. Detailed ent
 Daily plans are keyed by device-local trade date and instrument, autosaved inside `settings.dailyPlans`, and included in full JSON backups. Attaching a plan explicitly copies its notes and stores an immutable JSON snapshot on the trade. Trade CSV includes the attachment, and plans have their own CSV export. Updating the daily plan does not rewrite saved trade snapshots.
 
 Dashboard and calendar share an instrument filter. History has a separate filter. The collapsed instrument comparison reports P&L and expectancy in R. Browser-local drafts remain supported. New test coverage includes every instrument's long/short P&L, valid tick increments, legacy records, plan attachment and independent snapshots, backup settings, filters and CSV.
+
+
+
+## Public accounts and seven-day trial
+
+`/signup` creates an email/password account using Supabase Auth. Email confirmation is required by the current project settings; configure production SMTP and allow `https://mnq-tradebook.vercel.app/login` in Auth redirect URLs for reliable confirmation delivery. The app handles confirmation-required and immediate-session responses. No authentication secret is sent to the browser.
+
+Trials run for exactly 168 hours from the immutable Auth `created_at` timestamp. Every journal/image mutation checks live identity and server-side trial access. Editable profile metadata is never used for entitlement. The existing `tradebook_owner` account remains unlimited. After expiry, `/account` and `/api/export` remain accessible, while new saves/uploads return 402. `/plans` honestly marks paid membership coming soon: no payment collection, payment provider, subscription price or recurring charge is configured.
+
+Vercel Blob namespaces use the verified user ID. Browser IndexedDB names are per-account; only the verified owner retains the original device database for continuity. Cloud calls carry the page's user ID so stale tabs cannot read or write the account of a later sign-in. Existing Supabase journal and image RLS policies stay owner-only for legacy fallback; new users store data in private Vercel Blob.
+
+Validation: `npm test` covers trial boundary, owner exemption, confirmation flow, anonymous/CSRF rejection, account isolation and expiry. Email delivery requires a real inbox check; no customer account is created by automated tests.

@@ -33,6 +33,30 @@
     {
       "source": "/api/logout",
       "destination": "/api/handler?route=/api/logout"
+    },
+    {
+      "source": "/signup",
+      "destination": "/api/handler?route=/signup"
+    },
+    {
+      "source": "/plans",
+      "destination": "/api/handler?route=/plans"
+    },
+    {
+      "source": "/account",
+      "destination": "/api/handler?route=/account"
+    },
+    {
+      "source": "/api/signup",
+      "destination": "/api/handler?route=/api/signup"
+    },
+    {
+      "source": "/api/account",
+      "destination": "/api/handler?route=/api/account"
+    },
+    {
+      "source": "/api/export",
+      "destination": "/api/handler?route=/api/export"
     }
   ],
   "headers": [

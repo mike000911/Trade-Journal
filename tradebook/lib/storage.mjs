@@ -4,7 +4,7 @@ const unavailable = () => Object.assign(new Error('Unable to load the existing c
 const journalPath = user => `journals/${user}/state.json`;
 const imagePath = (user, id) => `charts/${user}/${id}`;
 
-// Call only after the API has verified the signed-in user's owner access.
+// Call only after the API has verified the signed-in user's access; all paths are scoped to their verified user ID.
 export function createStorage(blob = { get, put }) {
   async function currentJournal(user, client) {
     const result = await blob.get(journalPath(user), { access: 'private', useCache: false });
